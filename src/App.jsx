@@ -499,13 +499,15 @@
 
 // export default App
 
-import React, { useEffect,useState } from 'react'
-import axios from 'axios'
+
+import axios from "axios";
+import React from "react";
+import { useState,useEffect } from "react";
 
 const App = () => {
     const[user, setUser] = useState(null)
     useEffect(()=>{
-        axios("https://randomuser.me/api/")
+        axios.get("https://randomuser.me/api/")
         .then((response)=>{
             console.log(response.data.results[0])
             setUser(response.data.results[0])
@@ -515,8 +517,12 @@ const App = () => {
     <div>
       {user && (
         <>
-        <p>{user.name.first}</p>
-        <img src={user.picture.medium} alt="image"/>
+        <p>name : {user.name.first} {user.name.last}</p>
+        <p>Phone number: {user.phone}</p>
+        <p>City : {user.location.city} </p>
+        <p>State:{user.location.city}</p>
+        <p>Country: {user.location.country}</p>
+        <img src={user.picture.large} alt="random image" />
         </>
       )}
     </div>
@@ -524,6 +530,3 @@ const App = () => {
 }
 
 export default App
-
-
-
